@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethereum Fartcoin</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./IMG_20250117_161231_281.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --neon-yellow: #ffffff;
+        --neon-orange: #f3f0eb;
+        --dark-bg: #0a0a0a;
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --card-hover: rgba(255, 255, 255, 0.1);
+        --border-glow: rgba(255, 215, 0, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--dark-bg);
+        color: #ffffff;
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--dark-bg);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--neon-yellow);
+        border-radius: 4px;
+      }
+
+      /* Header Styles */
+      .main-header {
+        position: relative;
+        height: 200vh;
+        background: url("./bg3.jpg") center/cover no-repeat;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 5vh;
+      }
+
+      .header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 10, 10, 0.3) 0%,
+          rgba(10, 10, 10, 0.2) 50%,
+          rgba(10, 10, 10, 0.9) 100%
+        );
+        z-index: 1;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .logo-title-container {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 4rem;
+      }
+
+      .logo-container {
+        position: relative;
+      }
+
+      .logo {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px var(--border-glow));
+      }
+
+      .title-container {
+        flex: 1;
+      }
+
+      .main-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: linear-gradient(
+          45deg,
+          var(--neon-yellow),
+          var(--neon-orange)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+        letter-spacing: 4px;
+        line-height: 1.2;
+      }
+
+      .token-symbol {
+        font-size: 2.5rem;
+        color: var(--neon-yellow);
+        font-weight: 600;
+        letter-spacing: 2px;
+      }
+
+      /* Main Content Styles */
+      .main-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .grid-section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        margin: 6rem 0;
+      }
+
+      .about-section {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid var(--border-glow);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+      }
+
+      .about-section:hover {
+        transform: translateY(-5px);
+      }
+
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.5rem;
+        color: var(--neon-yellow);
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .about-text {
+        color: #cccccc;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin-top: 2rem;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+      }
+
+      .feature-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--card-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        color: var(--neon-yellow);
+        font-size: 1.2rem;
+      }
+
+      /* Tokenomics Section */
+      .tokenomics-section {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 3rem;
+        border: 1px solid var(--border-glow);
+        backdrop-filter: blur(10px);
+      }
+
+      .tokenomics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .tokenomics-card {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.1);
+      }
+
+      .tokenomics-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--neon-yellow);
+      }
+
+      .tokenomics-icon {
+        font-size: 2.5rem;
+        color: var(--neon-yellow);
+        margin-bottom: 1rem;
+      }
+
+      .tokenomics-title {
+        font-size: 1.2rem;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .tokenomics-value {
+        font-size: 2rem;
+        color: var(--neon-yellow);
+        font-weight: 700;
+      }
+
+      /* Roadmap Section */
+      .roadmap-section {
+        margin: 6rem 0;
+      }
+
+      .roadmap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .phase-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border-glow);
+        transition: all 0.3s ease;
+      }
+
+      .phase-card:hover {
+        transform: translateY(-10px);
+        background: var(--card-hover);
+      }
+
+      .phase-number {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--neon-yellow);
+        opacity: 0.2;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .phase-title {
+        font-size: 1.8rem;
+        color: var(--neon-yellow);
+        margin-bottom: 1.5rem;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .phase-list {
+        list-style: none;
+      }
+
+      .phase-list li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+        color: #ffffff;
+      }
+
+      .phase-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--neon-yellow);
+      }
+
+      /* Trading Section */
+      .trading-section {
+        margin: 6rem 0;
+      }
+
+      .trading-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .trading-card {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: #ffffff;
+        border: 1px solid var(--border-glow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .trading-card:hover {
+        transform: translateY(-10px);
+        background: var(--card-hover);
+      }
+
+      .trading-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--neon-yellow),
+          var(--neon-orange)
+        );
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .trading-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .trading-icon {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 215, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: var(--neon-yellow);
+        transition: all 0.3s ease;
+      }
+
+      .trading-card:hover .trading-icon {
+        transform: scale(1.1);
+        background: rgba(255, 215, 0, 0.2);
+      }
+
+      .trading-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .trading-desc {
+        color: #cccccc;
+        font-size: 1rem;
+      }
+
+      /* Contract Section */
+      .contract-section {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 3rem;
+        text-align: center;
+        margin: 6rem 0;
+        border: 1px solid var(--border-glow);
+      }
+
+      .contract-box {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-top: 2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid var(--border-glow);
+      }
+
+      .contract-address {
+        font-family: monospace;
+        font-size: 1.1rem;
+        color: #ffffff;
+      }
+
+      .copy-btn {
+        background: rgba(255, 215, 0, 0.1);
+        border: none;
+        color: var(--neon-yellow);
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Inter", sans-serif;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 215, 0, 0.2);
+      }
+
+      /* Community Section */
+      .community-section {
+        text-align: center;
+        margin: 6rem 0;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .social-link {
+        width: 70px;
+        height: 70px;
+        background: var(--card-bg);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--neon-yellow);
+        font-size: 2rem;
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-glow);
+      }
+
+      .social-link:hover {
+        transform: translateY(-10px) rotate(360deg);
+        background: var(--card-hover);
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 3rem;
+        background: rgba(0, 0, 0, 0.5);
+        margin-top: 6rem;
+        border-top: 1px solid var(--border-glow);
+      }
+
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        color: #cccccc;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Media Queries */
+      @media (max-width: 1200px) {
+        .main-title {
+          font-size: 4rem;
+        }
+
+        .grid-section {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .logo-title-container {
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .main-title {
+          font-size: 3rem;
+        }
+
+        .token-symbol {
+          font-size: 2rem;
+        }
+
+        .header-content {
+          padding: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .tokenomics-grid,
+        .trading-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contract-box {
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .contract-address {
+          font-size: 0.9rem;
+          word-break: break-all;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-overlay"></div>
+      <div class="header-content">
+        <div class="logo-title-container">
+          <div class="logo-container">
+            <img src="./logo.png" alt="APE PUNK Logo" class="logo" />
+          </div>
+          <div class="title-container">
+            <h1 class="main-title">Ethereum Fartcoin</h1>
+            <p class="token-symbol">$EFART</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <div class="grid-section">
+        <div class="about-section">
+          <h2 class="section-title">About</h2>
+          <p class="about-text">Initializing pitch.exe...</p>
+          <p class="about-text">
+            System message: Deploying Ethereum Fartcoin, the meme coin optimized
+            for maximum humor and blockchain hilarity. Utilizing advanced
+            Proof-of-Gas protocols, Fartcoin transforms every transaction into a
+            high-efficiency, low-seriousness event. Upcoming modules: Fart NFTs,
+            Fart DEX, and the Metaverse Gas-Off, designed to disrupt markets and
+            airwaves alike. Action required: Acquire Fartcoin and execute
+            laughter protocol. Status: Breaking wind, breaking boundaries. End
+            transmission.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+              <span>100% Safe and Secure</span>
+            </li>
+            <li class="feature-item">
+              <div class="feature-icon"><i class="fas fa-lock"></i></div>
+              <span>Liquidity Burned</span>
+            </li>
+            <li class="feature-item">
+              <div class="feature-icon"><i class="fas fa-code"></i></div>
+              <span>Verified Contract</span>
+            </li>
+            <li class="feature-item">
+              <div class="feature-icon"><i class="fas fa-users"></i></div>
+              <span>Community Driven</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="tokenomics-section">
+          <h2 class="section-title">Tokenomics</h2>
+          <div class="tokenomics-grid">
+            <div class="tokenomics-card">
+              <i class="fas fa-coins tokenomics-icon"></i>
+              <h3 class="tokenomics-title">Total Supply</h3>
+              <p class="tokenomics-value">1,000,000,000</p>
+            </div>
+            <div class="tokenomics-card">
+              <i class="fas fa-percentage tokenomics-icon"></i>
+              <h3 class="tokenomics-title">Tax</h3>
+              <p class="tokenomics-value">0%</p>
+            </div>
+            <div class="tokenomics-card">
+              <i class="fas fa-fire tokenomics-icon"></i>
+              <h3 class="tokenomics-title">Burn</h3>
+              <p class="tokenomics-value">0%</p>
+            </div>
+            <div class="tokenomics-card">
+              <i class="fas fa-rocket tokenomics-icon"></i>
+              <h3 class="tokenomics-title">Launch Type</h3>
+              <p class="tokenomics-value">Fair Launch</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="roadmap-section">
+        <h2 class="section-title">Roadmap</h2>
+        <div class="roadmap-grid">
+          <div class="phase-card">
+            <span class="phase-number">01</span>
+            <h3 class="phase-title">Launch Phase</h3>
+            <ul class="phase-list">
+              <li>Community Launch</li>
+              <li>Website Development</li>
+              <li>Social Media Setup</li>
+              <li>Initial Marketing Push</li>
+              <li>CoinGecko/CMC Listings</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <span class="phase-number">02</span>
+            <h3 class="phase-title">Growth Phase</h3>
+            <ul class="phase-list">
+              <li>CEX Listings</li>
+              <li>Marketing Expansion</li>
+              <li>Partnership Development</li>
+              <li>Community Growth</li>
+              <li>Influencer Collaborations</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <span class="phase-number">03</span>
+            <h3 class="phase-title">Expansion Phase</h3>
+            <ul class="phase-list">
+              <li>Major Exchange Listings</li>
+              <li>Platform Development</li>
+              <li>Global Marketing Campaign</li>
+              <li>Strategic Partnerships</li>
+              <li>Ecosystem Growth</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <span class="phase-number">04</span>
+            <h3 class="phase-title">Ecosystem Phase</h3>
+            <ul class="phase-list">
+              <li>NFT Integration</li>
+              <li>Governance Implementation</li>
+              <li>Cross-Chain Expansion</li>
+              <li>Community DAO</li>
+              <li>Metaverse Integration</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="contract-section">
+        <h2 class="section-title">Contract Address</h2>
+        <div class="contract-box">
+          <code class="contract-address"
+            >0x00000000000000000000000000000000000000</code
+          >
+          <button
+            class="copy-btn"
+            onclick="navigator.clipboard.writeText('0x00000000000000000000000000000000000000')"
+          >
+            <i class="fas fa-copy"></i> Copy Address
+          </button>
+        </div>
+      </section>
+
+      <section class="trading-section">
+        <h2 class="section-title">Trading</h2>
+        <div class="trading-grid">
+          <a
+            href="https://www.dextools.io/app/en/ether/pair-explorer/0x00000000000000000000000000000000000000?t=1736951637414"
+            class="trading-card"
+          >
+            <div class="trading-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="trading-title">DEXTools</h3>
+            <p class="trading-desc">
+              View real-time charts and trading information
+            </p>
+          </a>
+          <a
+            href="https://app.uniswap.org/explore/tokens/ethereum/0x00000000000000000000000000000000000000"
+            class="trading-card"
+          >
+            <div class="trading-icon">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <h3 class="trading-title">Uniswap</h3>
+            <p class="trading-desc">Trade $EFART tokens on Uniswap</p>
+          </a>
+          <a
+            href="https://etherscan.io/token/0x00000000000000000000000000000000000000"
+            class="trading-card"
+          >
+            <div class="trading-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3 class="trading-title">Etherscan</h3>
+            <p class="trading-desc">View contract and transactions</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="community-section">
+        <h2 class="section-title">Join Our Community</h2>
+        <div class="social-links">
+          <a href="https://x.com/" class="social-link">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://t.me/" class="social-link">
+            <i class="fab fa-telegram"></i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>© 2025 Ethereum Fartcoin. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
